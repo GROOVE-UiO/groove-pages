@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GROOVE pages</title><style>/* pd-page.css, shared visual language for HTML results pages.
+   Inlined by build scripts through pdviz.page_css(). Layout stays in each page's own CSS.
+   Every colour in this file is a token. pdviz.page_lint() allows exactly the hex values found here.
+   Each colour token is light-dark(<light>, <dark>), so one line holds both modes. */
+
+:root {
+  /* Follows the system setting. Light where the browser reports none. */
+  color-scheme: light dark;
+
+  /* Categorical, Okabe-Ito minus yellow and black. Same hex in both modes.
+     tests/test_page.py checks these six against palettes.cycle("okabe-ito")[:6]. */
+  --c1: #0072B2;
+  --c2: #E69F00;
+  --c3: #009E73;
+  --c4: #D55E00;
+  --c5: #56B4E9;
+  --c6: #CC79A7;
+
+  /* Neutrals */
+  --bg: light-dark(#ffffff, #16181c);
+  --fg: light-dark(#111111, #e4e4e4);
+  --muted: light-dark(#555555, #aaaaaa);   /* notes, captions */
+  --faint: light-dark(#777777, #888888);   /* stamps, axis ticks */
+  --line: light-dark(#cccccc, #444444);    /* borders, table rules */
+  --grid: light-dark(#dddddd, #333333);    /* chart grid lines */
+  --panel: light-dark(#f4f4f4, #23262b);   /* table headers, info boxes */
+
+  /* Roles */
+  --link: light-dark(#0072B2, #56B4E9);
+  --pos: var(--c1);
+  --neg: var(--c4);
+  /* Sequential. Mix as color-mix(in oklab, var(--seq-hi) P%, var(--seq-lo)).
+     Keep P at 75 or below under text so the label stays readable. */
+  --seq-lo: var(--bg);
+  --seq-hi: var(--c1);
+
+  /* Type scale. --t-dense is for dense SVG labels only, never prose. */
+  --t-dense: 10px;
+  --t-small: 12px;
+  --t-body: 15px;
+  --t-h2: 18px;
+  --t-h1: 22px;
+  --font: system-ui, sans-serif;
+  --mono: ui-monospace, Menlo, Consolas, monospace;
+
+  /* Spacing scale */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 16px;
+  --s4: 32px;
+}
+/* Optional manual override, set data-theme on <html>. */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+body { margin: 0; padding: 0 var(--s3); background: var(--bg); color: var(--fg);
+       font-family: var(--font); font-size: var(--t-body); line-height: 1.5; }
+h1 { font-size: var(--t-h1); margin: var(--s4) 0 var(--s2); }
+h2 { font-size: var(--t-h2); margin: var(--s4) 0 var(--s2); }
+h3 { font-size: var(--t-body); font-weight: 700; margin: var(--s3) 0 var(--s1); }
+p, ul, ol { margin: 0 0 var(--s2); }
+ul, ol { padding-left: 20px; }
+a { color: var(--link); }
+code, pre, .mono { font-family: var(--mono); font-size: .9em; }
+hr { border: 0; border-top: 1px solid var(--line); margin: var(--s4) 0; }
+
+/* Text helpers */
+.prose { max-width: 70ch; }
+.note { color: var(--muted); }
+.stamp { color: var(--faint); font-size: var(--t-small); }  /* build date and commit */
+
+/* Figures. SVG text takes the page font and colour. */
+figure { margin: var(--s3) 0; }
+figcaption { color: var(--muted); font-size: var(--t-small); margin-top: var(--s1); }
+svg text { fill: var(--fg); font-family: var(--font); font-size: var(--t-small); }
+svg text.dense { font-size: var(--t-dense); }
+
+/* Tables */
+table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th, td { border-bottom: 1px solid var(--line); padding: var(--s1) var(--s2); text-align: right; }
+th { font-weight: 600; background: var(--panel); }
+th:first-child, td:first-child, td.text, th.text { text-align: left; }
+/* "Table N." caption, above the table. */
+caption { caption-side: top; text-align: left; color: var(--muted); font-size: var(--t-small);
+          padding-bottom: var(--s1); }
+
+/* Controls. Native elements, tinted with the first palette colour. */
+input, select { accent-color: var(--c1); font: inherit; font-size: var(--t-small); }
+label { font-size: var(--t-small); color: var(--muted); }
+button { font: inherit; font-size: var(--t-small); cursor: pointer; padding: var(--s1) var(--s2);
+         border: 1px solid var(--line); border-radius: 2px; background: none; color: var(--fg); }
+button[aria-pressed="true"], button[aria-selected="true"] {
+  background: var(--c1); border-color: var(--c1); color: #ffffff; }
+/* Option bar, also used for tabs. Buttons share borders. */
+.bar { display: inline-flex; }
+.bar button { border-radius: 0; margin-left: -1px; }
+.bar button:first-child { margin-left: 0; }
+
+details { margin: var(--s1) 0 var(--s2); }
+summary { cursor: pointer; color: var(--link); font-size: var(--t-small); }
+</style></head>
+<body><main>
+<h1>GROOVE pages</h1>
+<p>Results pages of the GROOVE project (RITMO, University of Oslo), newest first.</p>
+<table><caption>Table 1. Pages in this repo.</caption>
+<tr><th>Date</th><th class="text">Page</th><th class="text">Content</th></tr><tr><td style="white-space: nowrap">2026-11-17</td><td class="text"><a href="gomez-listening/">Gómez tapping, CAP models</a></td><td class="text">Tap positions of 43 people on 16 drum loops, against the current CAP and two layer models.</td></tr></table>
+<h2>Older pages</h2>
+<ul><li><a href="https://p-didier.github.io/tap2groove/">Tap2Groove</a> <span class="note">Phone tapping app, one pad then two pads.</span></li><li><a href="https://p-didier.github.io/wp3-first-experiment-pilot/">WP3 Exp. 1 pilot</a> <span class="note">Place-accents listening test.</span></li><li><a href="https://p-didier.github.io/rules-listening/">Accent rule listening</a> <span class="note">WP1 accent rules on audio examples.</span></li><li><a href="https://p-didier.github.io/apc-listening/">APC listening sheet</a> <span class="note">Accent pattern contrast examples.</span></li></ul>
+</main></body></html>
